@@ -6,17 +6,17 @@ import numpy as np
 
 # AX_DELAYS = [i / 10 for i in range(11)]
 # AX_DELAYS += [i for i in range(2, 11)]
-SIM_TIME = 5e+4
+SIM_TIME = 1e+5
 DELAY = 1.0
 FPATH = "results/ax_del_"
-AX_DELAYS = [0.5, 0.67, 0.83, 1.0]
+AX_DELAYS = [0.0, 0.17, 0.33, 0.5, 0.67, 0.83, 1.0]
 ALPHA = 0.057
 
 
 timers_data = []
 timers = {}
 st = time.time()
-for checks in range(1, 6):
+for checks in range(1, 11):
 
     for run in range(1, 5):
         timers_list = ['With'] if run < 3 else ['Without']
@@ -35,7 +35,7 @@ for checks in range(1, 6):
             # Random seed
             nest.SetKernelStatus({
                 'rng_seed': checks,
-                'total_num_virtual_procs': 6})
+                'total_num_virtual_procs': 7})
 
             # Compiling Own Models
             nest.CopyModel('static_synapse', 'syn_exc', {"weight": 38.5})
